@@ -1,0 +1,68 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+
+{% if error == "no" %}
+
+<script>
+    alert("Signup sucessfully");
+    window.location=('{% url 'login' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Signup  Failed');
+</script>
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="text-center">Existing User</h2>
+            <hr>
+            <p>By creating the account you will be able to move around the
+            website without hesitation , you will get access to the notes very easily</p>
+            <center><a href="{% url 'signup' %}" class="btn btn-danger text-white mt-5">Create An Account</a></center>
+        </div>
+        <div class="col-sm-6">
+            <h2 class="text-center">User Signup</h2>
+            <hr>
+
+            <form method="post">
+                {% csrf_token %}
+                <label>First Name</label>
+                <input type="text" placeholder="First Name" class="form-control" name="first_name">
+                <label>Last Name</label>
+                <input type="text" placeholder="Second Name" class="form-control" name="last_name">
+
+                <label>Contact</label>
+                <input type="number" placeholder="Ph Number" class="form-control" name="number">
+                <label>Email</label>
+                <input type="email" placeholder="email" class="form-control" name="email">
+
+                <label>Password</label>
+                <input type="password" placeholder="password" class="form-control" name="password">
+
+                <label>Branch</label>
+                <select name="branch" class="form-control">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechnical">Mechinical</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Civil">Civil</option>
+                    <option value="E&C">E&C</option>
+                    <option value="Agricultural">Agricultural</option>
+                </select>
+                <label> You are </label>
+                <select class="form-control" name="role">
+                    <option value="teacher">Teacher</option>
+                    <option value="student">Student</option>
+                </select>
+
+                <input type="submit" class="btn btn-primary mt-5" value="Signup">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'usernavigation.html' %}
+{% load static %}
+
+{% block body %}
+
+{% if error == "no" %}
+
+<script>
+    alert("Profile edited sucessfully");
+    window.location=('{% url 'profile' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Cannot edit your Profile');
+</script>
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="text-center">Edit Your  Profile</h2>
+            <hr>
+           </div>
+        <div class="col-sm-6">
+            <h2 class="text-center">Edit Your Profile</h2>
+            <hr>
+
+            <form method="post">
+                {% csrf_token %}
+                <label>First Name</label>
+                <input value="{{data.user.first_name}}" type="text" placeholder="First Name" class="form-control" name="first_name">
+                <label>Last Name</label>
+                <input type="text" value="{{data.user.last_name}}" placeholder="" class="form-control" name="last_name">
+
+                <label>Contact</label>
+                <input type="number" name="contact" value="{{data.contact}}" placeholder="Ph Number" class="form-control">
+
+                <label>Branch</label>
+                <select name="branch" class="form-control">
+                    <option value="{{data.branch}}">{{data.branch}}</option>
+                    <option value="Mechnical">Mechinical</option>
+                    <option value="Computer">Computer</option>
+                    <option value="Civil">Civil</option>
+                    <option value="E&C">E&C</option>
+                    <option value="Agricultural">Agricultural</option>
+                </select>
+
+
+                <input type="submit" class="btn btn-primary mt-5" value="Change">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

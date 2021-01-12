@@ -1,0 +1,33 @@
+{% extends 'usernavigation.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div style="margin-left:220px; color:grey" class=" h3"> User Profile</div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <b>Full Name:</b>
+            <br> <br>
+            <b>Username:</b>
+            <br><br>
+            <b>Contact:</b>
+            <br><br>
+            <b>Branch:</b>
+            <br><br>
+            <b>Role:</b>
+        </div>
+        <div class="col-sm-6">
+            {{data.user.first_name}} {{ data.user.last_name}}
+            <br><br> {{data.user.username}}
+            <br><br> {{data.contact}}
+            <br><br> {{data.branch}}
+            <br><br> {{data.role}}
+            <br><br>
+        </div>
+        <br> <br>
+    </div>
+</div>
+
+{% endblock %}

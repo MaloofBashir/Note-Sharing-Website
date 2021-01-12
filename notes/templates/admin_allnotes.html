@@ -1,0 +1,42 @@
+{% extends 'admin_navigation.html' %}
+{% load static %}
+
+{% block body %}
+
+<br>
+<br>
+<table class="table" >
+<thead>
+<tr>
+    <th>No.</th>
+    <th>Name</th>
+    <th>Branch</th>
+    <th>Uploading Date</th>
+    <th>Subject</th>
+    <th>NotesFile</th>
+    <th>File Type</th>
+    <th>Disctription</th>
+
+    <th> Current Status</th>
+    <th>Action</th>
+</tr>
+</thead>
+    <tbody>
+    {% for n in notes %}
+    <tr>
+
+        <td>{{ forloop.counter}}</td>
+        <td>{{ n.user.first_name}} {{n.user.last_name}}</td>
+        <td>{{n.branch}}</td>
+        <td>{{ n.uploadingdate}}</td>
+        <td>{{ n.subject}}</td>
+        <td><a href="{{n.notesfile.url}}">{{n.notesfile}}</a> </td>
+        <td>{{n.filetype}}</td>
+        <td>{{ n.discription}}</td>
+        <td>{{n.status}}</td>
+        <td><a href="{% url 'change_status' n.id %}" class="btn btn-success">Change&nbsp;Status</a> </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
